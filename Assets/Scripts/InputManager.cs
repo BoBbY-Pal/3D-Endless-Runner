@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -46,21 +47,16 @@ public class InputManager : Singleton<InputManager>
         playerControls.Touch.PrimaryContact.canceled -= EndTouch;
     }
 
-    private void StartTouch(InputAction.CallbackContext context)
+    private async void StartTouch(InputAction.CallbackContext context)
     {
-            OnStartTouch?.Invoke(UtilityClass.ScreenToWorld(mainCamera, playerControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float) context.startTime);
+        await Task.Delay(1);
+        
         // Call OnStartTouch event
-        if (OnStartTouch != null)
-        {
-        }
+        OnStartTouch?.Invoke(UtilityClass.ScreenToWorld(mainCamera, playerControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float) context.startTime);
     }
-
     private void EndTouch(InputAction.CallbackContext context)
     {
-            OnEndTouch?.Invoke(UtilityClass.ScreenToWorld(mainCamera, playerControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float) context.time);
         // Call OnEndTouch event
-        if (OnEndTouch != null)
-        {
-        }
+        OnEndTouch?.Invoke(UtilityClass.ScreenToWorld(mainCamera, playerControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float) context.time);
     }
 }
