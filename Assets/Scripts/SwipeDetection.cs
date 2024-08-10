@@ -9,7 +9,7 @@ public class SwipeDetection : MonoBehaviour
 
     [SerializeField] private float minimumDistance = 0.2f; // Min distance for swipe to consider.
     [SerializeField] private float maximumTime = 1f;       // Max time for the swipe to consider.
-
+    [SerializeField] private PlayerMovement _playerMovement;
     private void OnEnable()
     {
         SubscribeToEvents();
@@ -71,11 +71,11 @@ public class SwipeDetection : MonoBehaviour
         }
         else if (Vector2.Dot(direction, Vector2.left) > 0.9f)
         {
-            Debug.Log("Swipe Left");
+            _playerMovement?.MoveLeft();
         }
         else if (Vector2.Dot(direction, Vector2.right) > 0.9f)
         {
-            Debug.Log("Swipe Right");
+           _playerMovement?.MoveRight();
         }
     }
 }
