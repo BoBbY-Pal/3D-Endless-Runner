@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CollectibleData
   m_EditorClassIdentifier: 
   collectibleDatas:
-  - CollectibleType: 0
+  - CollectibleType: 1
     collectibleMaterial: {fileID: 2100000, guid: 1637134ec70a1a54b90f7e69e2709a83, type: 2}
     benefitValue: 5
-  - CollectibleType: 1
+  - CollectibleType: 2
     collectibleMaterial: {fileID: 2100000, guid: 785d0ab7eee2c06448219dc02e408bf1, type: 2}
     benefitValue: 10

@@ -1,4 +1,3 @@
-using System;
 using Interfaces;
 using UnityEngine;
 
@@ -13,14 +12,6 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Translate(Vector3.forward * (Time.deltaTime * playerSpeed), Space.World);
         HorizontalMovement();
-        // if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        // {
-        //     transform.Translate(Vector3.left * Time.deltaTime * horizontalSpeed);
-        // }
-        // if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        // {
-        //     transform.Translate(Vector3.left * Time.deltaTime * horizontalSpeed * -1);
-        // }
     }
 
     private void HorizontalMovement()
@@ -66,8 +57,8 @@ public class PlayerMovement : MonoBehaviour
     public void RestoreSpeed()
     {
         // Revert to original speed
-        playerSpeed /= 2; 
-        horizontalSpeed /= 2;
+        playerSpeed = 25; 
+        horizontalSpeed = 27;
     }
 
     public void BoostSpeed(float multiplier)
