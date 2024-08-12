@@ -36,7 +36,7 @@ public class TimerController : Singleton<TimerController>
 
     void EndGame()
     {
-        // End the game by loading a Game Over scene or any other end game logic
-        // SceneManager.LoadScene("GameOverScene"); // Replace with your Game Over scene name
+        // End the game by loading a Main Menu scene or any other end game logic
+        SceneManager.LoadScene(0); 
     }
 }
