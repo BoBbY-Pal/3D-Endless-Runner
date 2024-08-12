@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Security;
+﻿using System.Collections;
 using Enums;
-using Interfaces;
+using Scriptable_Objects;
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
@@ -15,20 +13,33 @@ public class Collectible : MonoBehaviour
     [SerializeField] private MeshRenderer _meshRenderer;
     
     
-    public void Init(CollectibleType type, Material material, float benefitValue)
+    public void Init(CollectiblesData.CollectibleTypesData collectibleData)
     {
-        collectibleType = type;
-        _meshRenderer.material = material;
-        switch (type)
+        collectibleType = collectibleData.CollectibleType;
+        _meshRenderer.material = collectibleData.collectibleMaterial;
+        switch (collectibleType)
         {
             case CollectibleType.Blue:
-                speedBoostDuration = benefitValue;
+                speedBoostDuration = collectibleData.benefitValue;
                 break;
             case CollectibleType.Green:
-                timeToAdd = benefitValue;
+                timeToAdd = collectibleData.benefitValue;
                 break;
         }
-        
+
+        int randomValue = Random.Range(0, 4);
+        switch (randomValue)
+        {
+            case 0:
+                gameObject.transform.localPosition = new Vector3(-3, 0, 0);
+                break;
+            case 1:
+                gameObject.transform.localPosition = new Vector3(0, 0, 0);
+                break;
+            case 2:
+                gameObject.transform.localPosition = new Vector3(3, 0, 0);
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,9 +59,6 @@ public class Collectible : MonoBehaviour
                     TimerController.Instance.AddTime(timeToAdd);
                     break;
             }
-
-            // Destroy the collectible after being picked up
-            Destroy(gameObject);
         }
     }
 

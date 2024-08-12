@@ -19,15 +19,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(xMovement, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        ICollectible collectible = other.GetComponent<ICollectible>();
-        if (collectible != null)
-        {
-            collectible.Collect();
-        }
-    }
+    
 
     public void MoveRight()
     {
