@@ -1,3 +1,5 @@
+using System;
+using Interfaces;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -26,7 +28,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(xMovement, transform.position.y, transform.position.z), Time.deltaTime * horizontalSpeed);
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ICollectible collectible = other.GetComponent<ICollectible>();
+        if (collectible != null)
+        {
+            collectible.Collect();
+        }
+    }
+
     public void MoveRight()
     {
         if (xMovement == -3)
@@ -50,5 +61,19 @@ public class PlayerMovement : MonoBehaviour
             xMovement = -3;
         }
         
+    }
+
+    public void RestoreSpeed()
+    {
+        // Revert to original speed
+        playerSpeed /= 2; 
+        horizontalSpeed /= 2;
+    }
+
+    public void BoostSpeed(float multiplier)
+    {
+        // Double the player's speed
+        playerSpeed *= multiplier; 
+        horizontalSpeed *= multiplier;
     }
 }
